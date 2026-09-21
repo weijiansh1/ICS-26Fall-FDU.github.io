@@ -99,4 +99,6 @@ nav:
 #    - 测试: labs/test-lab.md
   - 杂项: 
     - 使用 SSH: misc/ssh.md
+    - 使用 VS Code: misc/vscode_use.md
+    - Linux 用户与权限: misc/user.md
   - 团队: team.md

@@ -127,50 +127,50 @@ Git 是一种分布式版本控制软件。
     1. 创建一个空文件夹 `test-git`。
     2. 点击左侧边栏中的 `源代码管理` 图标。
 
-        ![1](../assets/lab0-1.png)
+        ![1](../assets/lab0/lab0-1.png)
 
     3. 点击 'Initialize Repository'（这一步等同于 `git init`）。
     4. 新建 `main.cpp`，会出现 `U` 标记，意为 `Untracked（未跟踪的）`。
 
-        ![2](../assets/lab0-2.png)
+        ![2](../assets/lab0/lab0-2.png)
 
     5. 回到 `源代码管理` 界面，这里有两个 `+` 按钮。
     上方的 `+` 代表将项目中的所有更改添加到暂存区，相当于在项目目录下执行 `git add .`。
     下方的 `+` 代表将指定文件添加到暂存区，相当于执行 `git add main.cpp`。
 
-        ![3](../assets/lab0-3.png)
+        ![3](../assets/lab0/lab0-3.png)
 
     6. 点击上方的 `+`，`main.cpp` 的标记变为 `A`，意为 `Added（已暂存）`。
 
-        ![4](../assets/lab0-4.png)
+        ![4](../assets/lab0/lab0-4.png)
 
     7.  在文本框输入 commit message（可以是多行），点击提交，相当于执行 `git commit -m "Initial commit"`
 
-        ![5](../assets/lab0-5.png)
+        ![5](../assets/lab0/lab0-5.png)
 
     8. 修改 `main.cpp`。这时 `main.cpp` 的标记会变为 `M`，意为 `Modified（已修改）`
 
-        ![6](../assets/lab0-6.png)
+        ![6](../assets/lab0/lab0-6.png)
 
     9. 重复上述暂存、提交操作。
 
-        ![7](../assets/lab0-7.png)
+        ![7](../assets/lab0/lab0-7.png)
 
     10. 点击下方的 `Git Graph`，可以查看 Git 提交树。
 
-        ![8](../assets/lab0-8.png)
+        ![8](../assets/lab0/lab0-8.png)
     
     11. 在 `图表` 页面悬停，可以查看每次提交的提交信息与作者，且可以复制提交哈希值。
         
-        ![9](../assets/lab0-9.png)
+        ![9](../assets/lab0/lab0-9.png)
     
     12. 对于暂存区内不想要的更改，可以移动到暂存区内每个文件旁，点击 `-`，即可回退到未暂存的状态。
         
-        ![10](../assets/lab0-10.png)
+        ![10](../assets/lab0/lab0-10.png)
 
     13. 对于未暂存想要彻底放弃的更改，可以移动到暂存区内每个文件旁，点击放弃更改。此操作不可恢复。
         
-        ![11](../assets/lab0-11.png)
+        ![11](../assets/lab0/lab0-11.png)
     
 
 ???+ note "可视化操作的背后：基本 Git 提交指令"
@@ -366,11 +366,11 @@ GitHub 是一个基于 Git 的代码托管平台，你可以将你的本地 Git 
     2. 打开 GitHub 并登录自己的账号。
     3. 点击右上角头像，进入 Settings ：
 
-        ![1](../assets/lab0-ssh-key1.png)
+        ![1](../assets/lab0/lab0-ssh-key1.png)
 
     4. 进入页面后，在左侧选择 `SSH and GPG keys`, 在右侧点击 `New SSH Key`。
 
-        ![2](../assets/lab0-ssh-key2.png)
+        ![2](../assets/lab0/lab0-ssh-key2.png)
 
     5. 在框中粘贴入自己复制的公钥，点击 `Add SSH key` 即可。
 
@@ -411,11 +411,11 @@ GitHub 是一个基于 Git 的代码托管平台，你可以将你的本地 Git 
 
     如果你想修正我们课程网页上的错误，可以在 GitHub fork 我们的仓库，复制一份到你自己的仓库。
     
-    ![fork](../assets/lab0-fork.png)
+    ![fork](../assets/lab0/lab0-fork.png)
     
     然后点击 `Code`，再选择 `SSH`，复制这串 URL。
 
-    ![alt text](../assets/lab0-github1.png)
+    ![alt text](../assets/lab0/lab0-github1.png)
 
     在终端运行 `git clone git@github.com:ICS-26Fall-FDU/ICS-26Fall-FDU.github.io.git`（你需要替换成你自己仓库的地址）
 
@@ -458,11 +458,11 @@ GitHub 是一个基于 Git 的代码托管平台，你可以将你的本地 Git 
 
   - 在我们给出的模板仓库链接中，点击 `Use this template` 后选择 `Create a new repository`。
 
-  ![模板仓库](../assets/lab0-template.png)
+  ![模板仓库](../assets/lab0/lab0-template.png)
 
   - 随后的页面中，输入仓库名，然后点击 `Create repository`。
 
-  ![create](../assets/lab0-create.png)
+  ![create](../assets/lab0/lab0-create.png)
 
   - 接下来就可以用刚刚提到的克隆操作把仓库内容下载到本地了。
   - 完成实验后，在 E-Learning 提交你自己的仓库链接，如 `https://github.com/JurFal/TestLab` 。
@@ -524,7 +524,7 @@ GitHub 是一个基于 Git 的代码托管平台，你可以将你的本地 Git 
 
         你可以在自己电脑上任一位置用 Word 写实验报告并导出，然后把 PDF 文件拖拽复制到 VSCode 编辑器左侧的目录下。
 
-        ![VSCode](../assets/lab0-vscode.png)
+        ![VSCode](../assets/lab0/lab0-vscode.png)
 
 ## 提交
 
