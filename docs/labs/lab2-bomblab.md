@@ -4,7 +4,7 @@ title: "Lab2：BombLab"
 
 # Lab2: BombLab
 
-**DDL：2026 年 10 月 30 日**（具体截止时刻以 E-Learning 作业页面为准）
+**DDL：2026 年 10 月 30 日 23:59**
 
 ## 实验简介
 
@@ -243,7 +243,7 @@ Breakpoint 2, 0x00000000004014d6 in phase_00 ()
 (gdb) p/u $edi
 $2 = 94
 (gdb) x/1uw $rbp-0x20
-0x7fffffffd3f0:	0
+0x7fffffffd3f0: 0
 (gdb) p/u (($challenge >> 5) & 255) ^ 42
 $3 = 94
 ```
