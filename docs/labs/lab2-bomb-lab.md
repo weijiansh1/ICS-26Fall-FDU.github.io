@@ -10,7 +10,7 @@ title: "Lab2：BombLab"
 
 本实验是 CSAPP 第三章配套实验。你需要用反汇编和 GDB 分析一个没有提供源码的程序，理解其中的函数调用、分支、循环、递归和指针操作，再用 C 语言写出对应的解法。
 
-每位同学领取自己的二进制炸弹 `bomb`，完成六个正式关卡，并提交 `defuser.c` 和实验报告。正式六关考点相同，但不同同学的常量、运算和数据布局可能不同。另有一个选做的 Honor。
+每位同学领取自己的二进制炸弹 `bomb`，完成六个正式关卡和 Honor，并提交 `defuser.c` 和实验报告。正式六关考点相同，但不同同学的常量、运算和数据布局可能不同。Honor 也是必做题。
 
 **故事背景：《这里还没有明天》**
 
@@ -26,7 +26,7 @@ title: "Lab2：BombLab"
 
 > **本实验提交的是解法程序，不是六个固定密码。** 每关会给出一个数值 challenge，正确口令随它变化。你需要在 `defuser.c` 中实现从 challenge 算出口令的函数；助教会用未公开的输入检查解法。
 
-基础分为 110 分，Honor 最多额外加 10 分，最高总分为 120 分。具体截止时刻、迟交规则和报告检查安排以 E-Learning 的课程公告及本实验作业页面为准。
+本实验总分为 120 分：正式六关各 18 分，共 108 分；Honor 10 分；提交格式 2 分。Honor 计入总分，不再作为选做加分题。具体截止时刻、迟交规则和报告检查安排以 E-Learning 的课程公告及本实验作业页面为准。
 
 !!! tip "前排提示"
 
@@ -114,7 +114,7 @@ git add -f bomb
 | `tutor/` | [tutor 教学](https://github.com/ICS-26Fall-FDU/BombLab/blob/main/tutor/README.md)，包含源码和参考解法 |
 | `teaching/` | [配套 C 小例子](https://github.com/ICS-26Fall-FDU/BombLab/blob/main/teaching/README.md)，用于练习六关涉及的知识点 |
 | `defuser_main.c`、`challenge.c`、`cli.c` 等 | 公共驱动程序，不需要修改 |
-| `public_test.py`、`tests/public.json` | 公开测试程序和 seed，包括正式六关和选做 Honor |
+| `public_test.py`、`tests/public.json` | 公开测试程序和 seed，包括正式六关和 Honor |
 | `.github/workflows/public-tests.yml` | GitHub Actions 公开自测工作流 |
 | `AGENTS.md` | AI 编程助手的辅助约定，不改变题目、评分或提交要求 |
 
@@ -498,7 +498,7 @@ Public tests: 0/10
 make test
 ```
 
-六关全部公开测试通过时显示 `Public tests: 60/60`，随后检查 Honor：还没有实现 `solve_secret` 时显示 `Secret phase: not attempted`，不算失败。
+六关全部公开测试通过时显示 `Public tests: 60/60`，随后检查 Honor。还没有实现 `solve_secret` 时，Honor 测试会显示 `FAIL (solver_error)`；需要完成 Honor 后，完整测试才能通过。
 
 公开测试通过后，再选一个没有用于调试、也不在公开列表中的 seed 检查，例如：
 
@@ -510,13 +510,13 @@ make test
 
 #### GitHub Actions 自测
 
-提交并 push 个人 `bomb` 和解法后，仓库中的 `BombLab public tests` 工作流会自动运行。它分别测试正式六关和选做 Honor，不读取 `config.txt`，不需要学号、Secrets 或登录令牌。
+提交并 push 个人 `bomb` 和解法后，仓库中的 `BombLab public tests` 工作流会自动运行。它分别测试正式六关和 Honor，不读取 `config.txt`，不需要学号、Secrets 或登录令牌。
 
 课程模板仓库本身跳过这组解题任务；由模板创建的个人仓库会正常运行。刚创建仓库、还没有提交个人炸弹时，Actions 会提示 `Personal bomb is missing`，先领取并提交 `bomb`，再查看测试结果。
 
 在 GitHub 仓库的 Actions 页面打开本次运行，查看 `Phase 1 public tests` 至 `Phase 6 public tests`。某关失败不会取消其他关，点开任务日志可以查看失败的 seed 和错误类别。
 
-> **Honor 是选做题。** 没有实现 `solve_secret` 时，`Secret phase public tests (optional)` 显示 `not attempted` 并通过；实现后才逐个 seed 检查。这一项失败只表示 Honor 有问题，不代表正式六关没通过，也不会让正式六关扣分，请分别查看六个正式关卡的结果。
+> **Honor 计入总分，占 10 分。** `Honor public tests` 会逐个 seed 检查；没有实现 `solve_secret` 时，该任务会失败。Honor 失败不影响正式六关各自的得分，请分别查看各关的测试结果。
 
 Actions 只检查公开测试，不是最终成绩。助教会使用保存的个人炸弹重新编译解法，运行隐藏测试；报告按提交要求检查，不单独计分。
 
@@ -565,7 +565,7 @@ make
 python3 public_test.py --secret
 ```
 
-只有输出 `Secret phase defused.` 才算 Honor 通过；公开测试全部通过时显示 `Secret public tests: 10/10 (optional)`。`make test` 在六关全部通过后也会自动做这项检查。
+只有输出 `Secret phase defused.` 才算 Honor 通过；公开测试全部通过时显示 `Secret public tests: 10/10`。`make test` 在六关全部通过后也会自动做这项检查。
 
 公开测试和评分都要求同一个 seed 下的前六关正确。`prerequisite_` 开头的错误表示前六关在该 seed 下尚未通过，不是 Honor 答案本身的错误；评分时某个隐藏 seed 下任一正式关卡出错，该 seed 的 Honor 也不得分。
 
@@ -678,10 +678,9 @@ git push -f origin final
 | --- | ---: |
 | 提交格式：有 `defuser.c` 和报告、已推送 `final` 标签 | 2 |
 | 正式六关，每关 18 分 | 108 |
+| Honor（必做） | 10 |
 | 实验报告（必交，不单独计分） | 0 |
-| 基础分合计 | 110 |
-| Honor（选做），额外加分 | +10 |
-| 含 Honor 的最高总分 | 120 |
+| 总分 | 120 |
 
 每个正式关卡使用 128 个隐藏 challenge，按通过比例计分，例如通过一半测试得 9 分。Honor 使用 128 个隐藏 seed，同样按通过比例计分。公开测试不单独计分，只针对公开 seed 写答案表不能完成实验。
 
