@@ -96,8 +96,6 @@ git add -f bomb
 
 `config.txt` 只用于领取。已有炸弹的编译、运行和测试不再需要学号配置，你可以清空学号或删除配置，不要求提交；`package.json` 也不需要提交。若不希望把配置中的学号提交到 GitHub，请在首次提交前处理，之后删除文件不会清除已有 Git 历史。
 
-这不代表匿名领取：个人炸弹的下载附件名和 `package.json` 中仍包含学号。
-
 请使用自己的炸弹。最终评分脚本会根据 E-Learning 提交者的学号，使用助教保存的对应 `bomb` 测试解法，不根据仓库中的配置或上传的二进制决定题目。
 
 ## 主要文件
@@ -575,18 +573,24 @@ python3 public_test.py --secret
 
 下载程序会自动重试，并在普通下载入口连接失败时尝试 GitHub 官方 API。在线下载会校验 SHA-256，通过后才安装炸弹，不需要额外填写令牌。
 
-如果仍然失败，可以在浏览器中打开 [炸弹下载页面](https://github.com/ICS-26Fall-FDU/BombLab/releases/latest)，下载自己的 `bomb-<学号>.tar.gz`，再导入：
+如果仍然失败，先运行以下命令获得自己的附件链接，不需要手动查找附件：
 
 ```sh
-python3 fetch_bomb.py --file bomb-243xxxx0175.tar.gz
+python3 fetch_bomb.py --print-url
+```
+
+在浏览器中打开输出的链接，下载完成后导入：
+
+```sh
+python3 fetch_bomb.py --file "下载的压缩包路径"
 make
 ```
 
-把文件名换成自己的附件路径，并确保配置中的学号正确。已有 `bomb` 时无需重新下载；只有丢失或删除炸弹后，才需要重新填写学号领取。
+把引号中的内容换成下载文件的实际路径，并确保配置中的学号正确。已有 `bomb` 时无需重新下载；只有丢失或删除炸弹后，才需要重新填写学号领取。
 
 2026 年 10 月 12 日的修订只更正 `bomb --help`，并让 Honor 跳过空行及只含空白字符的行；题目参数、答案和评分规则不变。已领取的炸弹仍可继续使用，不要求重新领取或重做题目。
 
-如果需要新版，请先备份解法，从最新正式 Release 下载自己的压缩包，在 `config.txt` 中重新填写自己的学号，再按上面的 `--file` 方法导入。当前模板的下载器也可以直接运行 `python3 fetch_bomb.py` 领取新版；旧下载器可能仍指向兼容保留的初始发行。程序只替换 `bomb` 和 `package.json`，不会覆盖 `defuser.c`；领取后可再次清空学号。如需更新 Actions 使用的炸弹，重新执行 `git add -f bomb` 并提交、push。已有 `bomb` 时，`make bomb` 不会主动更新。
+重新领取时，请使用当前模板的 `fetch_bomb.py`；旧模板可从[最新正式 Release](https://github.com/ICS-26Fall-FDU/BombLab/releases/latest) 下载同名脚本，只替换这个文件，不要覆盖解法或报告。在 `config.txt` 中重新填写自己的学号，运行 `python3 fetch_bomb.py`，或按上面的 `--file` 方法导入。程序只替换 `bomb` 和 `package.json`，不会覆盖 `defuser.c`；领取后可再次清空学号。如需更新 Actions 使用的炸弹，重新执行 `git add -f bomb` 并提交、push。已有 `bomb` 时，`make bomb` 不会主动更新。
 
 ### 炸弹无法执行
 
